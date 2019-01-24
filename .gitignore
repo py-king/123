@@ -102,3 +102,8 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+.idea
+
+/Users/yangjuan/Desktop/123/mall/mall/settings.py
