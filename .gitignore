@@ -31,7 +31,7 @@ Desktop/123/mall/mall/settings.py
 *.manifest
 *.spec
 
-settings.py
+/mall/settings.py
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
