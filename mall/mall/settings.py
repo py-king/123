@@ -109,11 +109,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'HOST': '127.0.0.1',  # 数据库主机
+        'HOST': '192.168.107.128',  # 数据库主机
         # 'HOST': '192.168.150.145',  # 数据库主机
         'PORT': 3306,  # 数据库端口
-        'USER': 'meiduo',  # 数据库用户名
-        'PASSWORD': 'meiduo',  # 数据库用户密码
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'mysql',  # 数据库用户密码
         'NAME': 'meiduo_mall'  # 数据库名字
     }
 }
@@ -274,8 +274,8 @@ EMAIL_FROM = '美多商城<returnes@163.com>'
 
 
 # FastDFS
-FDFS_URL = 'http://127.0.0.1:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
-FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/docker_fastdfs/client.conf')
+FDFS_URL = 'http://192.168.35.21:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/fastdfs/client.conf')
 
 # django文件存储
 DEFAULT_FILE_STORAGE = 'utils.docker_fastdfs.storage_manage.FastDFSStorage'
@@ -292,14 +292,16 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = ''  # 上传图片保存路径，使用了FastDFS，所以此处设为''
 
 # 生成的静态html文件保存目录
-# GENERATED_STATIC_HTML_FILES_DIR = os.path.join(os.path.dirname(BASE_DIR), 'front')
 GENERATED_STATIC_HTML_FILES_DIR = os.path.join(os.path.dirname(BASE_DIR), 'front')
 
 
 # 定时任务
 CRONJOBS = [
     # 每5分钟执行一次生成主页静态文件
-    ('*/5 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/xu/123/mall/logs/crontab.log')
+    # 参数1:定义任务的频次 分时日月周
+    # 参数2:任务(函数)
+    # 参数3: 日志路径(必须正确)
+    ('*/1 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/xu/123/mall/logs/crontab.log')
 ]
 
 # 解决crontab中文问题
@@ -310,7 +312,7 @@ CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
+        'URL': 'http://192.168.107.128:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
         'INDEX_NAME': 'meiduo',  # 指定elasticsearch建立的索引库的名称
     },
 }
