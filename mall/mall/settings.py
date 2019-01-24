@@ -32,13 +32,14 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     'localhost:8080',
     'www.meiduo.site:8080',
-    '192.168.150.145:8080'
+    '192.168.133.129:8080',
+    '192.168.35.21:8080',
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 #允许哪些主机访问
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.150.1']
+ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.133.129']
 
 # Application definition
 
@@ -109,11 +110,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'HOST': '192.168.107.128',  # 数据库主机
+        'HOST': '192.168.35.21',  # 数据库主机
         # 'HOST': '192.168.150.145',  # 数据库主机
         'PORT': 3306,  # 数据库端口
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'mysql',  # 数据库用户密码
+        'USER': 'meiduo',  # 数据库用户名
+        'PASSWORD': 'meiduo',  # 数据库用户密码
         'NAME': 'meiduo_mall'  # 数据库名字
     }
 }
@@ -301,7 +302,7 @@ CRONJOBS = [
     # 参数1:定义任务的频次 分时日月周
     # 参数2:任务(函数)
     # 参数3: 日志路径(必须正确)
-    ('*/1 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/xu/123/mall/logs/crontab.log')
+    ('*/1 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/123/mall/logs/crontab.log')
 ]
 
 # 解决crontab中文问题
@@ -312,7 +313,7 @@ CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://192.168.107.128:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
+        'URL': 'http://192.168.35.21:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
         'INDEX_NAME': 'meiduo',  # 指定elasticsearch建立的索引库的名称
     },
 }
