@@ -49,3 +49,7 @@ class OrderView(CreateAPIView):
     '''订单提交视图'''
     permission_classes = [IsAuthenticated]
     serializer_class=OrderCommitSerializer
+
+
+def xu():
+    pass
