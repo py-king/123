@@ -32,13 +32,14 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     'localhost:8080',
     'www.meiduo.site:8080',
-    '192.168.150.145:8080'
+    '192.168.35.21:8080',
+    '192.168.198.151:8080'
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 #允许哪些主机访问
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.150.1']
+ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.198.151']
 
 # Application definition
 
@@ -109,8 +110,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'HOST': '127.0.0.1',  # 数据库主机
-        # 'HOST': '192.168.150.145',  # 数据库主机
+        # 'HOST': '127.0.0.1',  # 数据库主机
+        'HOST': '192.168.35.21',  # 数据库主机
         'PORT': 3306,  # 数据库端口
         'USER': 'meiduo',  # 数据库用户名
         'PASSWORD': 'meiduo',  # 数据库用户密码
@@ -121,7 +122,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
+        "LOCATION": "redis://192.168.35.21:6379/0",
         # "LOCATION": "redis://127.0.0.1:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -129,7 +130,7 @@ CACHES = {
     },
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://192.168.35.21:6379/1",
         # "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -138,7 +139,7 @@ CACHES = {
     # 图形验证码
     "code": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/2",
+        "LOCATION": "redis://192.168.35.21:6379/2",
         # "LOCATION": "redis://127.0.0.1:6379/2",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -147,7 +148,7 @@ CACHES = {
     #存放省市区信息
     "areas": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/3",
+        "LOCATION": "redis://192.168.35.21:6379/3",
         # "LOCATION": "redis://127.0.0.1:6379/3",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -155,7 +156,7 @@ CACHES = {
     },
     "history": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/4",
+        "LOCATION": "redis://192.168.35.21:6379/4",
         # "LOCATION": "redis://127.0.0.1:6379/4",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
@@ -163,7 +164,7 @@ CACHES = {
     },
     "cart": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/5",
+        "LOCATION": "redis://192.168.35.21:6379/5",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -259,7 +260,7 @@ AUTHENTICATION_BACKENDS = [
 QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
-QQ_REDIRECT_URI = 'http://127.0.0.1:8080/oauth_callback.html'
+QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
 
 #邮箱认证配置信息
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -274,7 +275,7 @@ EMAIL_FROM = '美多商城<returnes@163.com>'
 
 
 # FastDFS
-FDFS_URL = 'http://127.0.0.1:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_URL = 'http://192.168.35.21:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
 FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/docker_fastdfs/client.conf')
 
 # django文件存储
@@ -299,7 +300,9 @@ GENERATED_STATIC_HTML_FILES_DIR = os.path.join(os.path.dirname(BASE_DIR), 'front
 # 定时任务
 CRONJOBS = [
     # 每5分钟执行一次生成主页静态文件
-    ('*/5 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/xu/123/mall/logs/crontab.log')
+    # ('*/5 * * * *', 'contents.crons.generate_static_index_html' ,'>> '+os.path.join(BASE_DIR,'logs\\')+'crontab.log')
+    ('*/5 * * * *', 'contents.crons.generate_static_index_html', '>> /home/python/Desktop/p5/123/mall/logs/crontab.log')
+
 ]
 
 # 解决crontab中文问题
@@ -310,7 +313,7 @@ CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
+        'URL': 'http://192.168.35.21:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
         'INDEX_NAME': 'meiduo',  # 指定elasticsearch建立的索引库的名称
     },
 }

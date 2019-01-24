@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+*.js
+*.html
+
 # Distribution / packaging
 .Python
 build/
@@ -55,6 +58,8 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
+
+.idea
 
 # Flask stuff:
 instance/
