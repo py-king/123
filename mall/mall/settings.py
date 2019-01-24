@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'users',
     # 'users.apps.UsersConfig',
-    'corsheaders',#解决后端跨域问题
+    # 'corsheaders',#解决后端跨域问题
     'oauth.apps.OauthConfig',
     'areas.apps.AreasConfig',
     'goods.apps.GoodsConfig',
@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',  # 富文本编辑器上传图片模块
     'django_crontab',  # 定时任务
     'haystack',# 搜索引擎接口
-    #xadmin
+    # xadmin
     # 'xadmin',
     # 'crispy_forms',
     # 'reversion',
@@ -113,8 +113,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
         # 'HOST': '127.0.0.1',  # 数据库主机
         'HOST': '192.168.35.21',  # 数据库主机
+
+        # 'HOST': '192.168.150.145',  # 数据库主机
+
         'PORT': 3306,  # 数据库端口
         'USER': 'meiduo',  # 数据库用户名
         'PASSWORD': 'meiduo',  # 数据库用户密码
@@ -262,8 +266,10 @@ AUTHENTICATION_BACKENDS = [
 # QQ登录参数
 QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
+
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
 QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
+
 
 #邮箱认证配置信息
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -303,7 +309,8 @@ GENERATED_STATIC_HTML_FILES_DIR = os.path.join(os.path.dirname(BASE_DIR), 'front
 # 定时任务
 CRONJOBS = [
     # 每5分钟执行一次生成主页静态文件
-    ('*/5 * * * *', 'contents.crons.generate_static_index_html' ,'>> '+os.path.join(BASE_DIR,'logs\\')+'crontab.log')
+    ('*/1 * * * *', 'contents.crons.generate_static_index_html', '>> /Users/yangjuan/Desktop/123/mall/logs/crontab.log')
+
 ]
 
 # 解决crontab中文问题
