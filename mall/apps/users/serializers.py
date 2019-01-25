@@ -197,3 +197,50 @@ class UserBrowsingHistoryListSerializer(serializers.ModelSerializer):
     class Meta:
         model=SKU
         fields = ('id', 'name', 'price', 'default_image_url', 'comments')
+
+
+
+class UserInfoPasswordSerializer(serializers.ModelSerializer):
+
+    old_password = serializers.CharField(label='旧密码',min_length=8,required=True,
+                                         max_length=20,write_only=True,allow_null=False)
+
+    password2 = serializers.CharField(label='新密码',min_length=8,required=True,max_length=20,
+                                     write_only=True,allow_null=False)
+
+    class Meta:
+        model=User
+        fields = ('id','old_password','password','password2')
+
+
+
+    def update(self, instance, validated_data):
+
+
+        old_password = validated_data.get('old_password')
+        password = validated_data.get('password')
+        password2 = validated_data.get('password2')
+
+
+
+
+        if not all([old_password,password,password2]):
+            raise serializers.ValidationError('参数不全')
+
+        if not instance.check_password(old_password):
+            raise serializers.ValidationError('原密码错误')
+
+        if password != password2:
+            raise serializers.ValidationError('密码不一致')
+
+        instance.password = password
+        instance.set_password(password)
+        instance.save()
+
+        return instance
+
+
+
+
+
+

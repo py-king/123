@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^emails/$',views.UserEmailInfoView.as_view(),name='emails'),
     url(r'^emails/verification/$',views.UserEmailVerifyView.as_view(),name='verify'),
     url(r'^browerhistories/$', views.UserBrowsingHistoryView.as_view(), name='history'),
+    # 路由： /users/(?P<user_id>d+)/password/
+    url(r'^(?P<pk>\d+)/password/$',views.UserInfoPasswordView.as_view(),name='password')
 
 ]
 
