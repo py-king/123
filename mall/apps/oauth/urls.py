@@ -9,4 +9,11 @@ urlpatterns=[
     url(r'^qq/statues/$',views.QQAuthURLView.as_view(),name='qq_statues'),
     # 获取 code，http://api.meiduo.site:8000/oauth/qq/users/?code=5F548719D03A0BFBC3A5FB632C0F198B
     url(r'^qq/users/$',views.QQAuthUserView.as_view(),name='qq_users'),
+
+    # 获取微博登陆的url
+    url(r'^weibo/statues/$',views.WEIBOAuthURLView.as_view(),name='weibo_statues'),
+    #获取code      oauth/sina/user/?code=
+    url(r'^sina/user/$',views.WEIBOAuthUserView.as_view(),name='weibo_code'),
+
+
 ]

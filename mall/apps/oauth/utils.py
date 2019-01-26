@@ -37,3 +37,17 @@ def check_access_token(access_token):
     except BadSignature:
         return None
     return data['openid']
+
+
+from weibo import Client
+
+# def get_weibo_obj():
+#     '''
+#     1.获取微博登陆的url
+#     2.获取微博登陆的token
+#     3.获取微博登陆的openid
+#     4.return: oauth对象
+#     '''
+#     oauth2=Client(api_key=settings.WEIBO_Key, api_secret=settings.WEIBO_Secret,
+#                   redirect_uri=settings.WEIBO_REDIRECT_URI)
+#     return oauth2

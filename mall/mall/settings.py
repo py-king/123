@@ -33,13 +33,13 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
     'www.meiduo.site:8080',
     '192.168.35.21:8080',
-    '192.168.198.151:8080'
+    '192.168.198.152:8080'
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 #允许哪些主机访问
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.198.151']
+ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.198.152']
 
 # Application definition
 
@@ -260,7 +260,16 @@ AUTHENTICATION_BACKENDS = [
 QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
-QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
+# QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
+QQ_REDIRECT_URI = 'http://192.168.198.152:8080/oauth_callback.html'
+
+# 微博登录
+
+WEIBO_Key = '3305669385'
+WEIBO_Secret = '74c7bea69d5fc64f5c3b80c802325276'
+WEIBO_REDIRECT_URI = 'http://www.meiduo.site:8080/sina_callback.html'
+
+
 
 #邮箱认证配置信息
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
