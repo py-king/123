@@ -260,7 +260,7 @@ AUTHENTICATION_BACKENDS = [
 QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
-QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
+QQ_REDIRECT_URI = 'http://192.168.35.30:8080/oauth_callback.html'
 
 #邮箱认证配置信息
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

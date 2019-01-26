@@ -123,3 +123,34 @@ class OrderCommitSerializer(serializers.ModelSerializer):
             pl.execute()
 
             return order
+
+
+
+
+
+
+class SKULstSerializer(serializers.ModelSerializer):
+    '''订单页面购物车序列化器'''
+    class Meta:
+        model=SKU
+        fields=['id','name','price','default_image_url']
+
+
+class OrderGoodsSerializer(serializers.ModelSerializer):
+    '''商品序列化器'''
+    sku = SKULstSerializer()
+
+    class Meta:
+        model=OrderGoods
+        fields=['order','count','price','sku']
+
+
+class OrderQuerySerializer(serializers.ModelSerializer):
+    '''
+    返回订单信息
+    '''
+    skus = OrderGoodsSerializer(many=True)
+    class Meta:
+        model=OrderInfo
+        # fields=['order_id','create_time','total_amount','pay_method','status','goods','skus']
+        fields=['order_id','create_time','total_amount','pay_method','status','skus']
