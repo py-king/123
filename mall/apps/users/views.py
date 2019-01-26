@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.shortcuts import render
 
 # Create your views here.
@@ -16,7 +16,8 @@ from users.models import User, Address
 from django_redis import get_redis_connection
 
 from users.serializers import RegisterModelSerializers, UserCenterInfoModelSerializer, UserEmailInfoSerializer, \
-    AddressSerializer, TitleSerializer, UserBrowsingHistorySerializer, UserBrowsingHistoryListSerializer
+    AddressSerializer, TitleSerializer, UserBrowsingHistorySerializer, UserBrowsingHistoryListSerializer, \
+    UserInfoPasswordSerializer
 from users.utils import check_token
 
 
@@ -257,3 +258,46 @@ class UserAuthorizationView(ObtainJSONWebToken):
             response=merge_cart_cookie_to_redis(request,user,response)
 
             return response
+
+
+"""
+修改密码：
+
+分析流程：
+1. 后端接收前端传递的数据(旧密码，新密码)
+2. 校验数据
+3. 更新数据库
+4. 返回响应
+
+
+"""
+# UpdateAPIView         三级视图(更新某一个数据)
+# 三级视图
+class UserInfoPasswordView(UpdateAPIView):
+
+        # 必须是登录用户
+        permission_classes = [IsAuthenticated]
+
+        serializer_class = UserInfoPasswordSerializer
+
+        # post方法   路由： /users/(?P<pk>d+)/password/
+
+        def get_queryset(self):
+
+            user = self.request.user
+            return User.objects.filter(pk=user.id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
