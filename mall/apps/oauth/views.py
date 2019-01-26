@@ -13,12 +13,16 @@ from oauth.utils import generic_open_id
 from oauth.weibotoken import get_access_token
 from . import utils
 from oauth.models import OAuthQQUser, OAuthSinaUser
-
+from urllib.parse import urlencode
 
 class QQAuthURLView(APIView):
     '''获取qq登陆的url'''
     def get(self,request):
+
         state=request.query_params.get('state')# 需要登陆的界面
+        if not state:
+            state = '/'
+
         # oauth=OAuthQQ(client_id=settings.QQ_CLIENT_ID, client_secret=settings.QQ_CLIENT_SECRET, redirect_uri=settings.QQ_REDIRECT_URI, state=state)
         login_url=utils.get_qq_obj(state=state).get_qq_url()# 调用公共方法获取oauth对象
         return Response({'login_url':login_url})
@@ -89,12 +93,24 @@ class WEIBOAuthURLView(APIView):
     '''获取登陆的url'''
     def get(self,request):
 
-        weibo_auth_url = "https://api.weibo.com/oauth2/authorize"
+
+        state = request.query_params.get('state')
+        if not state:
+            state = '/'
+
+
+        weibo_auth_url = "https://api.weibo.com/oauth2/authorize?"
         WEIBO_Key = settings.WEIBO_Key
-        # WEIBO_Secret = settings.WEIBO_Secret
         WEIBO_REDIRECT_URI = settings.WEIBO_REDIRECT_URI
 
-        login_url = weibo_auth_url+'?client_id='+WEIBO_Key+'&'+'redirect_uri='+WEIBO_REDIRECT_URI
+        data_dict={
+
+            'client_id':WEIBO_Key,
+            'redirect_uri':WEIBO_REDIRECT_URI,
+            'state':state
+        }
+
+        login_url = weibo_auth_url+urlencode(data_dict)
         return Response({'login_url':login_url})
 
 
@@ -134,7 +150,7 @@ class WEIBOAuthUserView(APIView):
 
             response = Response({
                 'access_token': token,
-                'username': wbuser.user.user,
+                'username': wbuser.user.username,
                 'user_id': wbuser.user.id
             })
             return response

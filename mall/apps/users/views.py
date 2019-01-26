@@ -257,3 +257,7 @@ class UserAuthorizationView(ObtainJSONWebToken):
             response=merge_cart_cookie_to_redis(request,user,response)
 
             return response
+
+class UserCPassAPIVier(APIView):
+    def post(self):
+        pass

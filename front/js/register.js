@@ -50,7 +50,7 @@ var vm = new Vue({
             this.image_code_id = this.generate_uuid();
 
             // 设置页面中图片验证码img标签的src属性
-            this.image_code_url = 'http://127.0.0.1:8000' + "/verifications/imagecodes/" + this.image_code_id + "/";
+            this.image_code_url = host + "/verifications/imagecodes/" + this.image_code_id + "/";
         },
         check_username: function () {
             var len = this.username.length;
@@ -62,7 +62,7 @@ var vm = new Vue({
             }
             // 检查重名
             if (this.error_name == false) {
-                axios.get('http://127.0.0.1:8000' + '/users/usernames/' + this.username + '/count/', {
+                axios.get(host+ '/users/usernames/' + this.username + '/count/', {
                     responseType: 'json'
                 })
                     .then(response => {
@@ -102,7 +102,7 @@ var vm = new Vue({
                 this.error_phone = true;
             }
             if (this.error_phone == false) {
-                axios.get('http://127.0.0.1:8000' + '/users/phones/' + this.mobile + '/count/', {
+                axios.get(host + '/users/phones/' + this.mobile + '/count/', {
                     responseType: 'json'
                 })
                     .then(response => {
@@ -150,7 +150,7 @@ var vm = new Vue({
             }
 
             // 向后端接口发送请求，让后端发送短信验证码
-            axios.get('http://127.0.0.1:8000' + '/verifications/smscodes/' + this.mobile + '/?text=' + this.image_code + '&image_code_id=' + this.image_code_id, {
+            axios.get(host + '/verifications/smscodes/' + this.mobile + '/?text=' + this.image_code + '&image_code_id=' + this.image_code_id, {
                 // 向后端声明，请返回json数据
                 responseType: 'json'
             })

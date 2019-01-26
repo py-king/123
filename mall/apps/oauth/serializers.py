@@ -125,7 +125,7 @@ class WEIBOAuthUserSerializer(serializers.Serializer):
         if user is None:
             user=User.objects.create(
                 mobile=validate_data['mobile'],
-                username=validate_data['username'],
+                username=validate_data['mobile'],
                 password=validate_data['password'],
             )
             user.set_password(validate_data['password'])
