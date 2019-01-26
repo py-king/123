@@ -127,6 +127,9 @@ class AccountsRevSMSView(APIView):
 from rest_framework.generics import UpdateAPIView
 class ResetPasswordView(UpdateAPIView):
     '''重置密码'''
+    # def perform_authentication(self, request):
+    #     pass
+    #     print(123)
     def get_queryset(self):
         user_id = self.kwargs['pk']
         return User.objects.filter(id=user_id)

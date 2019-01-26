@@ -1,32 +1,22 @@
-import json
 from decimal import Decimal
 
-from django.shortcuts import render
-
-# Create your views here.
-<<<<<<< HEAD
-from rest_framework.generics import CreateAPIView, ListAPIView
-=======
-from rest_framework import status
->>>>>>> origin/returnes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_redis import get_redis_connection
 
 from goods.models import SKU
-<<<<<<< HEAD
-from orders.models import OrderGoods, OrderInfo
-from orders.serializers import CartSKUSerializer, OrderSettlementSerializer, OrderCommitSerializer, ScoreOrderSerializer, \
-    CommentSerializer
-=======
-from orders.serializers import CartSKUSerializer, OrderSettlementSerializer, OrderCommitSerializer, \
-    OrderQuerySerializer, OrderGoodsSerializer
->>>>>>> origin/returnes
+
+from orders.models import OrderGoods
+from orders.serializers import  ScoreOrderSerializer, CommentSerializer
+
+from orders.serializers import OrderSettlementSerializer, OrderCommitSerializer, \
+    OrderQuerySerializer
+
 
 
 class OrderSettlementView(APIView):
-    '''订单结算视图'''
+    """订单结算视图"""
     permission_classes = [IsAuthenticated]
 
     def get(self,request):
@@ -59,11 +49,7 @@ class OrderSettlementView(APIView):
 
 from rest_framework.generics import CreateAPIView,ListAPIView
 
-class OrderView(CreateAPIView,ListAPIView):
-    '''订单提交视图'''
-    permission_classes = [IsAuthenticated]
-<<<<<<< HEAD
-    serializer_class=OrderCommitSerializer
+
 
 
 class ScoreOrderView(APIView):
@@ -87,16 +73,10 @@ class CommentView(APIView):
             return Response({'msg': 'ok'})
 
 
-# # 评论展示
-# class CommentsView(APIView):
-#     def get(self, request, sku_id):
-#         comment = OrderInfo.objects.filter(sku=sku_id)
-#         serializers = ScoreOrderSerializer(comment,many=True)
-#         return Response(serializers.data)
-=======
-
-    # pagination_class = None
-
+class OrderView(CreateAPIView, ListAPIView):
+    '''订单提交视图'''
+    permission_classes = [IsAuthenticated]
+    serializer_class = OrderCommitSerializer
     def get_serializer_class(self):
         if self.request.method=='POST':
             return OrderCommitSerializer
@@ -118,4 +98,3 @@ class CommentView(APIView):
             orderinfo.skus = skus
             return orderinfos
 
->>>>>>> origin/returnes

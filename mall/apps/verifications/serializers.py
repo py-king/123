@@ -94,10 +94,10 @@ class ResetPasswordSerializer(serializers.Serializer):
         from .utils import check_access_token
         user_id=check_access_token(access_token)
         attrs['user_id']=user_id
-        try:
-            user=User.objects.get(id=user_id)
-        except serializers.ValidationError:
-            raise Exception('token验证失败')
+        # try:
+        #     user=User.objects.get(id=user_id)
+        # except serializers.ValidationError:
+        #     raise Exception('token验证失败')
         # if user is None:
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
 

@@ -125,7 +125,7 @@ class OrderCommitSerializer(serializers.ModelSerializer):
             return order
 
 
-<<<<<<< HEAD
+
 class SkuSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -146,10 +146,6 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderGoods
         fields = ('score','comment','is_anonymous', 'is_commented')
-
-=======
-
-
 
 
 class SKULstSerializer(serializers.ModelSerializer):
@@ -177,4 +173,4 @@ class OrderQuerySerializer(serializers.ModelSerializer):
         model=OrderInfo
         # fields=['order_id','create_time','total_amount','pay_method','status','goods','skus']
         fields=['order_id','create_time','total_amount','pay_method','status','skus']
->>>>>>> origin/returnes
+

@@ -1,13 +1,11 @@
-from urllib.parse import parse_qs
 
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-# from QQLoginTool.QQtool import OAuthQQ
+
 from carts.utils import merge_cart_cookie_to_redis
 from mall import settings
-from oauth import weibotoken
+
 from oauth.serializers import QQAuthUserSerializer, WEIBOAuthUserSerializer
 from oauth.utils import generic_open_id
 from oauth.weibotoken import get_access_token
@@ -84,7 +82,6 @@ class QQAuthUserView(APIView):
         return response
 
 
-from weibo import Client
 class WEIBOAuthURLView(APIView):
     '''获取登陆的url'''
     def get(self,request):
