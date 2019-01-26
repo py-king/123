@@ -33,17 +33,25 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8080',
     'localhost:8080',
     'www.meiduo.site:8080',
+<<<<<<< HEAD
     '192.168.35.21:8080',
 
     '192.168.107.128:8080'
+=======
+    '192.168.35.30:8080'
+>>>>>>> origin/returnes
 )
 
 CORS_ALLOW_CREDENTIALS = True  # 允许携带cookie
 
 #允许哪些主机访问
 # ALLOWED_HOSTS = ['*']
+<<<<<<< HEAD
 
 ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.150.1','192.168.107.128']
+=======
+ALLOWED_HOSTS = ['127.0.0.1','api.meiduo.site','192.168.35.30']
+>>>>>>> origin/returnes
 
 # Application definition
 
@@ -68,10 +76,17 @@ INSTALLED_APPS = [
     'ckeditor_uploader',  # 富文本编辑器上传图片模块
     'django_crontab',  # 定时任务
     'haystack',# 搜索引擎接口
+<<<<<<< HEAD
     # xadmin
     # 'xadmin',
     # 'crispy_forms',
     # 'reversion',
+=======
+    #xadmin
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+>>>>>>> origin/returnes
 
 ]
 
@@ -115,16 +130,20 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 <<<<<<< HEAD
+<<<<<<< HEAD
         'HOST': '127.0.0.1',  # 数据库主机
         # 'HOST': '192.168.35.21',  # 数据库主机
+=======
+        'HOST': '192.168.35.21',  # 数据库主机
+>>>>>>> origin/returnes
         # 'HOST': '192.168.150.145',  # 数据库主机
 =======
         'HOST': '192.168.35.21',  # 数据库主机
         # 'HOST': '127.0.0.1',  # 数据库主机
 >>>>>>> origin/first
         'PORT': 3306,  # 数据库端口
-        'USER': 'root',  # 数据库用户名
-        'PASSWORD': 'mysql',  # 数据库用户密码
+        'USER': 'meiduo',  # 数据库用户名
+        'PASSWORD': 'meiduo',  # 数据库用户密码
         'NAME': 'meiduo_mall'  # 数据库名字
     }
 }
@@ -133,16 +152,26 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/0",
         "LOCATION": "redis://127.0.0.1:6379/0",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/0",
+        # "LOCATION": "redis://127.0.0.1:6379/0",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/1",
         "LOCATION": "redis://127.0.0.1:6379/1",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/1",
+        # "LOCATION": "redis://127.0.0.1:6379/1",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -150,8 +179,13 @@ CACHES = {
     # 图形验证码
     "code": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/2",
         "LOCATION": "redis://127.0.0.1:6379/2",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/2",
+        # "LOCATION": "redis://127.0.0.1:6379/2",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -159,24 +193,39 @@ CACHES = {
     #存放省市区信息
     "areas": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/3",
         "LOCATION": "redis://127.0.0.1:6379/3",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/3",
+        # "LOCATION": "redis://127.0.0.1:6379/3",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "history": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/4",
         "LOCATION": "redis://127.0.0.1:6379/4",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/4",
+        # "LOCATION": "redis://127.0.0.1:6379/4",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "cart": {
         "BACKEND": "django_redis.cache.RedisCache",
+<<<<<<< HEAD
         # "LOCATION": "redis://192.168.35.21:6379/5",
         "LOCATION": "redis://127.0.0.1:6379/5",
+=======
+        "LOCATION": "redis://192.168.35.21:6379/5",
+        # "LOCATION": "redis://127.0.0.1:6379/5",
+>>>>>>> origin/returnes
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -273,8 +322,12 @@ QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
 
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
+<<<<<<< HEAD
 QQ_REDIRECT_URI = 'http://192.168.107.128:8080/oauth_callback.html'
 
+=======
+QQ_REDIRECT_URI = 'http://192.168.35.30:8080/oauth_callback.html'
+>>>>>>> origin/returnes
 
 #邮箱认证配置信息
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -326,7 +379,7 @@ CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://192.168.107.128:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
+        'URL': 'http://192.168.35.21:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
         'INDEX_NAME': 'meiduo',  # 指定elasticsearch建立的索引库的名称
     },
 }

@@ -143,7 +143,11 @@ var vm = new Vue({
         },
         // 获取商品评价信息
         get_comments: function(){
+<<<<<<< HEAD
             axios.get(this.host+'/skus/'+this.sku_id+'/comment/', {
+=======
+            axios.get(this.host+'/skus/'+this.sku_id+'/comments/', {
+>>>>>>> origin/returnes
                     responseType: 'json'
                 })
                 .then(response => {
