@@ -113,32 +113,30 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-
-        # 'HOST': '127.0.0.1',  # 数据库主机
-        'HOST': '192.168.35.21',  # 数据库主机
-
+        'HOST': '127.0.0.1',  # 数据库主机
+        # 'HOST': '192.168.35.21',  # 数据库主机
         # 'HOST': '192.168.150.145',  # 数据库主机
-
         'PORT': 3306,  # 数据库端口
-        'USER': 'meiduo',  # 数据库用户名
-        'PASSWORD': 'meiduo',  # 数据库用户密码
+        'USER': 'root',  # 数据库用户名
+        'PASSWORD': 'mysql',  # 数据库用户密码
         'NAME': 'meiduo_mall'  # 数据库名字
     }
 }
+
 # redis 配置
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/0",
-        # "LOCATION": "redis://127.0.0.1:6379/0",
+        # "LOCATION": "redis://192.168.35.21:6379/0",
+        "LOCATION": "redis://127.0.0.1:6379/0",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "session": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/1",
-        # "LOCATION": "redis://127.0.0.1:6379/1",
+        # "LOCATION": "redis://192.168.35.21:6379/1",
+        "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -146,8 +144,8 @@ CACHES = {
     # 图形验证码
     "code": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/2",
-        # "LOCATION": "redis://127.0.0.1:6379/2",
+        # "LOCATION": "redis://192.168.35.21:6379/2",
+        "LOCATION": "redis://127.0.0.1:6379/2",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -155,23 +153,24 @@ CACHES = {
     #存放省市区信息
     "areas": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/3",
-        # "LOCATION": "redis://127.0.0.1:6379/3",
+        # "LOCATION": "redis://192.168.35.21:6379/3",
+        "LOCATION": "redis://127.0.0.1:6379/3",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "history": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/4",
-        # "LOCATION": "redis://127.0.0.1:6379/4",
+        # "LOCATION": "redis://192.168.35.21:6379/4",
+        "LOCATION": "redis://127.0.0.1:6379/4",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
     "cart": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.35.21:6379/5",
+        # "LOCATION": "redis://192.168.35.21:6379/5",
+        "LOCATION": "redis://127.0.0.1:6379/5",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
@@ -268,7 +267,7 @@ QQ_CLIENT_ID = '101474184'
 QQ_CLIENT_SECRET = 'c6ce949e04e12ecc909ae6a8b09b637c'
 
 # QQ_REDIRECT_URI = 'http://www.meiduo.site:8080/oauth_callback.html'
-QQ_REDIRECT_URI = 'http://192.168.35.21:8080/oauth_callback.html'
+QQ_REDIRECT_URI = 'http://192.168.107.128:8080/oauth_callback.html'
 
 
 #邮箱认证配置信息
@@ -284,7 +283,7 @@ EMAIL_FROM = '美多商城<returnes@163.com>'
 
 
 # FastDFS
-FDFS_URL = 'http://192.168.35.21:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
+FDFS_URL = 'http://192.168.107.128:8888/'  # 访问图片的路径域名 ip地址修改为自己机器的ip地址
 FDFS_CLIENT_CONF = os.path.join(BASE_DIR, 'utils/docker_fastdfs/client.conf')
 
 # django文件存储
@@ -321,7 +320,7 @@ CRONTAB_COMMAND_PREFIX = 'LANG_ALL=zh_cn.UTF-8'
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://192.168.35.21:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
+        'URL': 'http://192.168.107.128:9200/',  # 此处为elasticsearch运行的服务器ip地址，端口号固定为9200
         'INDEX_NAME': 'meiduo',  # 指定elasticsearch建立的索引库的名称
     },
 }

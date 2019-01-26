@@ -1,16 +1,19 @@
+import json
 from decimal import Decimal
 
 from django.shortcuts import render
 
 # Create your views here.
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django_redis import get_redis_connection
 
 from goods.models import SKU
-from orders.serializers import CartSKUSerializer, OrderSettlementSerializer, OrderCommitSerializer
+from orders.models import OrderGoods, OrderInfo
+from orders.serializers import CartSKUSerializer, OrderSettlementSerializer, OrderCommitSerializer, ScoreOrderSerializer, \
+    CommentSerializer
 
 
 class OrderSettlementView(APIView):
@@ -51,5 +54,30 @@ class OrderView(CreateAPIView):
     serializer_class=OrderCommitSerializer
 
 
-def xu():
-    pass
+class ScoreOrderView(APIView):
+    def get(self,request,order_id):
+        skus =OrderGoods.objects.filter(order_id__exact=order_id)
+        print(skus)
+        serializers =  ScoreOrderSerializer(skus,many=True)
+        return Response(serializers.data)
+
+
+class CommentView(APIView):
+    def post(self,request,order_id):
+        data = request.data
+        del data['order']
+        data1 = data
+        skus = OrderGoods.objects.filter(order_id__exact=order_id,sku_id__exact=data['sku'])
+        for sku in skus:
+            serilaizers = CommentSerializer(sku,data1)
+            serilaizers.is_valid()
+            serilaizers.save()
+            return Response({'msg': 'ok'})
+
+
+# # 评论展示
+# class CommentsView(APIView):
+#     def get(self, request, sku_id):
+#         comment = OrderInfo.objects.filter(sku=sku_id)
+#         serializers = ScoreOrderSerializer(comment,many=True)
+#         return Response(serializers.data)

@@ -123,3 +123,26 @@ class OrderCommitSerializer(serializers.ModelSerializer):
             pl.execute()
 
             return order
+
+
+class SkuSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SKU
+        fields = ('name', 'default_image_url','id')
+
+
+class ScoreOrderSerializer(serializers.ModelSerializer):
+    sku = SkuSerializer()
+    class Meta:
+        model = OrderGoods
+        fields = ('sku','comment','price','is_anonymous')
+        # fields = ('sku',)
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    # sku = SkuSerializer()
+    class Meta:
+        model = OrderGoods
+        fields = ('score','comment','is_anonymous', 'is_commented')
+

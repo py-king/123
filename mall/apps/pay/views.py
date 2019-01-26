@@ -50,7 +50,7 @@ class PaymentView(APIView):
             out_trade_no=order_id,
             total_amount=str(order.total_amount),#将浮点数转换为字符串
             subject='测试订单',
-            return_url='http://192.168.150.145:8080/pay_success.html',
+            return_url='http://192.168.107.128:8080/pay_success.html',
         )
         # 构造支付地址
         alipay_url = settings.ALIPAY_URL + '?' + order_string
